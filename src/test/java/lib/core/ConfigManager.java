@@ -1,13 +1,16 @@
 package lib.core;
 
+import java.io.File;
+import java.nio.file.Paths;
+
 public class ConfigManager {
 
     public static String getAppiumUrl() {
         return System.getProperty("appiumUrl", "http://127.0.0.1:4723");
     }
 
-    public static String getPlatformName() {
-        return System.getProperty("platformName", "Android");
+    public static String getPlatform() {
+        return System.getProperty("platform", "android");
     }
 
     public static String getDeviceName() {
@@ -19,8 +22,10 @@ public class ConfigManager {
     }
 
     public static String getAppPath() {
-        return System.getProperty("appPath",
-                "C:\\Users\\user\\projects\\wikipedia_mobile\\src\\test\\resources\\apps\\app-alpha-universal-release.apk");
+        return Paths.get(
+                new File(".").getAbsolutePath(),
+                "src", "test", "resources", "apps", "app-alpha-universal-release.apk"
+        ).toString();
     }
 
     public static int getDefaultTimeout() {
