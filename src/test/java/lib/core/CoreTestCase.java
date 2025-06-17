@@ -5,6 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.selenide.AllureSelenide;
+import lib.extensions.KnownIssueExtension;
 import lib.listeners.AllureEnvironmentWriter;
 import lib.listeners.FailureListener;
 import lib.ui.factories.PageFactory;
@@ -12,9 +13,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-@ExtendWith(FailureListener.class)
+@ExtendWith({FailureListener.class, KnownIssueExtension.class})
 public abstract class CoreTestCase {
 
     protected AppiumDriver driver;
@@ -51,7 +50,8 @@ public abstract class CoreTestCase {
         // Подключаем SelenideListener для Allure
         SelenideLogger.addListener("allure", new AllureSelenide()
                 .screenshots(true)
-                .savePageSource(true));
+                .savePageSource(true)
+                .includeSelenideSteps(true));  // отключить подробные шаги - false
 
         System.out.println("Driver initialized: " + driver);
     }

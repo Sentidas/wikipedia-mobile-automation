@@ -1,16 +1,24 @@
 package tests;
 
+import io.qameta.allure.*;
+import lib.annotaions.KnownIssue;
 import lib.core.CoreTestCase;
 import lib.utils.AppLifecycleUtils;
 import lib.utils.RotationUtils;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Epic("Стабильность приложения при изменении состояния устройства")
+@Feature("Ориентация экрана и поведение при сворачивании")
 public class OrientationAndBackgroundTests extends CoreTestCase {
 
     @Test
     @DisplayName("Проверка отображения заголовка статьи при смене ориентации экрана")
+    @Severity(SeverityLevel.NORMAL)
+    @Tag("full")
     void changesScreenOrientationOnSearchResults() {
+
         pages.
                 search().initSearchInput()
                 .typeSearchLine("Java")
@@ -32,6 +40,10 @@ public class OrientationAndBackgroundTests extends CoreTestCase {
 
     @Test
     @DisplayName("Проверка сохранения результатов поиска после сворачивания и возврата в приложение")
+    @Severity(SeverityLevel.CRITICAL)
+    @Tag("smoke")
+    @Tag("regress")
+    @Tag("full")
     void checkSearchArticleInBackground() {
         pages.
                 search().initSearchInput()

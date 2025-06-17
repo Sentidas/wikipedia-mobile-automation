@@ -19,7 +19,7 @@ allure {
         version.set(allureVersion)
     }
     adapter {  // отвечает за появление папки build/allure-results
-        aspectjWeaver.set(true)
+        aspectjWeaver.set(true) // отвечает за аннотацию @Step
         frameworks {
             junit5 {
                 adapterVersion.set(allureVersion) // версия интеграции фреймворка junit5 и allure
@@ -35,7 +35,8 @@ dependencies {
             "io.qameta.allure:allure-selenide:$allureVersion",
             "io.appium:java-client:$javaClient",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion"
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "io.qameta.allure:allure-junit5:2.27.0"
     )
 }
 
@@ -69,11 +70,7 @@ tasks.withType(Test) {
     doFirst {
         println "Current file.encoding: " + System.getProperty("file.encoding")
         println "Current native.encoding: " + System.getProperty("native.encoding")
-    }
-}
-
-tasks.withType(Test) {
-    doFirst {
         println ">>> JVM file.encoding: " + System.getProperty("file.encoding")
     }
 }
+
