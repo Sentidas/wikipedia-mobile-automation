@@ -4,6 +4,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.ui.factories.PageFactory;
 import lib.utils.Timeouts;
 
@@ -39,22 +40,24 @@ public class SearchPage extends BasePage {
     }
     /* TEMPLATES METHODS */
 
-
+    @Step("Открываем поиск по статьям")
     public SearchPage initSearchInput() {
         click(searchInput, "Cannot click search input");
         return this;
     }
-
+    @Step("Проверяем отображение пустого поиска")
     public SearchPage waitForEmptySearchInput() {
         shouldBeVisible(emptyInput, "Empty state image not visible", Timeouts.SHORT);
         return this;
     }
 
+    @Step("Вводим поисковый запрос: '{searchLine}'")
     public SearchPage typeSearchLine(String searchLine) {
         typeText(searchInput, searchLine, "Cannot type search text", Timeouts.SHORT);
         return this;
     }
 
+    @Step("Проверяем, что найдена статья с заголовком '{substring}'")
     public SearchPage checkTitleSearchResult(String substring) {
         shouldBeVisible(getSearchResultBySubstring(substring),
                 "Cannot find article with text: " + substring,
@@ -62,6 +65,7 @@ public class SearchPage extends BasePage {
         return this;
     }
 
+    @Step("Проверяем, что среди результатов есть статья '{expectedTitle}' с описанием '{expectedDescription}'")
     public SearchPage checkSearchResult(String expectedTitle, String expectedDescription) {
         searchResultContainers.shouldBe(CollectionCondition.sizeGreaterThan(0), Duration.ofSeconds(15));
 
@@ -78,7 +82,7 @@ public class SearchPage extends BasePage {
                 " and description: " + expectedDescription);
     }
 
-
+    @Step("Открываем статью с заголовком '{substring}'")
     public SearchPage clickByArticleWithSubstring(String substring) {
         click(getSearchResultBySubstring(substring),
                 "Cannot click article with text: " + substring,
@@ -86,23 +90,26 @@ public class SearchPage extends BasePage {
         return this;
     }
 
+    @Step("Получаем случайную статью из результатов поиска")
     public String getTitleRandomArticle() {
         checkResultsPresent(searchResults, Timeouts.MEDIUM);
         int index = new Random().nextInt(searchResults.size());
         return searchResults.get(index).text();
     }
 
+    @Step("Закрываем окно поиска")
     public SearchPage clickCancelButton() {
         click(cancelButton);
         return this;
     }
 
-
+    @Step("Проверяем, что есть результаты поиска")
     public SearchPage checkResultsPresent() {
         checkResultsPresent(searchResults, Timeouts.MEDIUM);
         return this;
     }
 
+    @Step("Проверяем, что результаты поиска отсутствуют")
     public SearchPage checkResultsNotPresent() {
         checkResultsAbsent(searchResults, Timeouts.MEDIUM);
         return this;

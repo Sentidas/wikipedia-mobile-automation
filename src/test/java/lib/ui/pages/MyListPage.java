@@ -2,6 +2,7 @@ package lib.ui.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.ui.factories.PageFactory;
 import lib.utils.SwipeUtils;
 import lib.utils.Timeouts;
@@ -37,11 +38,12 @@ public class MyListPage extends BasePage {
     }
     /* TEMPLATES METHODS */
 
+    @Step("Открываем папку с именем '{folderName}'")
     public MyListPage openFolderByName(String folderName) {
         click(getFolderElementByTitle(folderName));
         return this;
     }
-
+    @Step("Закрываем popup")
     public MyListPage closePopup() {
         try {
             shouldBeVisible(closePopupButton, "Cannot find popup", Timeouts.MEDIUM);
@@ -52,6 +54,7 @@ public class MyListPage extends BasePage {
         return this;
     }
 
+    @Step("Удаляем статью '{titleArticle}' свайпом влево")
     public MyListPage removeArticleBySwiping(String titleArticle) {
         SelenideElement title = getArticleElementByTitle(titleArticle);
         shouldBeVisible(title, "Cannot swipe element to left");
@@ -59,23 +62,27 @@ public class MyListPage extends BasePage {
         return this;
     }
 
+    @Step("Проверяем, что папка пустая")
     public MyListPage checkEmptyFolder() {
         shouldBeVisible(emptyFolderText,
                 "Cannot find text 'You have no articles added to this list.'");
         return this;
     }
 
+    @Step("Проверяем, что сохранена статья '{titleArticle}'")
     public MyListPage checkSavedArticle(String titleArticle) {
         shouldBeVisible(getArticleElementByTitle(titleArticle),
                 "Cannot find saved article in folder");
         return this;
     }
 
+    @Step("Открываем меню опций в папке")
     public MyListPage selectOptions() {
         click(moreOptionsButton, "Cannot find options button");
         return this;
     }
 
+    @Step("Создаём новую папку с именем '{folderName}'")
     public MyListPage createNewFolder(String folderName) {
         click(createNewListButton, "Cannot find 'Create New folder' button");
         typeText(inputNameOfFolder, folderName, "Cannot find field to write name folder for saved articles");
@@ -83,12 +90,13 @@ public class MyListPage extends BasePage {
         return this;
     }
 
-
+    @Step("Проверяем, что папка '{folderName}' создана")
     public MyListPage checkCreatedFolder(String folderName) {
         shouldBeVisible(getFolderElementByTitle(folderName), "Cannot find created folder " + folderName);
         return this;
     }
 
+    @Step("Открываем опции для папки '{folderName}'")
     public MyListPage selectOptionsFolder(String folderName) {
         SelenideElement folder = getFolderElementByTitle(folderName);
         shouldBeVisible(folder,"Cannot long tap element");
@@ -97,12 +105,14 @@ public class MyListPage extends BasePage {
         return this;
     }
 
+    @Step("Удаляем папку через опции")
     public MyListPage deleteFolderFromOptions() {
         click(deleteListOption, "Cannot find 'Delete list' option");
         click(confirmDeleteButton, "Cannot find popup 'Are you sure you want to delete");
         return this;
     }
 
+    @Step("Проверяем, что папка '{folderName}' отсутствует")
     public MyListPage checkFolderIsAbsent(String folderName) {
         shouldNOtBeVisible(getFolderElementByTitle(folderName), "Cannot find created folder " + folderName);
         return this;

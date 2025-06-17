@@ -2,8 +2,8 @@ package lib.utils;
 
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 
@@ -43,11 +43,11 @@ public class SwipeUtils {
         driver.perform(Collections.singletonList(swipe));
     }
 
-
     public static void swipeUpFast(AppiumDriver driver) {
         swipeUp(driver, Duration.ofMillis(200));
     }
 
+    @Step("Делаем свайп вверх до элемента (максимум {maxSwipes} свайпов)")
     public static void swipeUpToFindElement(AppiumDriver driver, SelenideElement locator, String errorMessage, int maxSwipes) {
 
         int swipesPerformed = 0;
@@ -61,6 +61,7 @@ public class SwipeUtils {
         }
     }
 
+    @Step("Свайпаем элемент влево")
     public static void swipeElementToLeft(AppiumDriver driver, SelenideElement element) {
 
         int startX = element.getLocation().getX() + element.getSize().getWidth(); // правый край
@@ -86,6 +87,7 @@ public class SwipeUtils {
         driver.perform(Collections.singletonList(swipe));
     }
 
+    @Step("Делаем долгий тап по элементу")
     public static void longTap(AppiumDriver driver, SelenideElement element) {
 
         int centerX = calculateElementCenterX(element);
@@ -103,7 +105,6 @@ public class SwipeUtils {
         longPress.addAction(finger.createPointerDown(0));
 
         longPress.addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), centerX, centerY));
-
 
         // Отпускаем палец
         longPress.addAction(finger.createPointerUp(0));

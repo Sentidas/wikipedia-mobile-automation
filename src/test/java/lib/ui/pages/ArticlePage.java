@@ -2,6 +2,7 @@ package lib.ui.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.ui.factories.PageFactory;
 import lib.utils.SwipeUtils;
 import lib.utils.Timeouts;
@@ -34,6 +35,7 @@ public class ArticlePage extends BasePage {
     }
     /* TEMPLATES METHODS */
 
+    @Step("Проверяем, что заголовок статьи соответствует '{expectedText}'")
     public ArticlePage checkTextInArticle(String text) {
 
         SelenideElement openedArticleTitle = getTextElementInArticle(text);
@@ -46,6 +48,7 @@ public class ArticlePage extends BasePage {
         return this;
     }
 
+
     public ArticlePage skipOnboardingPopup() {
         try {
             shouldBeVisible(popup, "Onboarding popup not visible", Timeouts.MEDIUM);
@@ -57,6 +60,7 @@ public class ArticlePage extends BasePage {
         return this;
     }
 
+    @Step("Делаем свайп до footer статьи")
     public ArticlePage swipeToFooter() {
         SwipeUtils.swipeUpToFindElement(
                 driver,
@@ -67,11 +71,13 @@ public class ArticlePage extends BasePage {
         return this;
     }
 
+    @Step("Добавляем статью в сохранённые")
     public ArticlePage addArticleToSavedList() {
         click(saveButton, "Cannot click Save Article button");
         return this;
     }
 
+    @Step("Сохраняем статью в новую папку '{folderName}' через Snackbar")
     public ArticlePage saveArticleToFolderWithSnackBar(String folderName) {
 
         click(saveButton);
@@ -81,6 +87,7 @@ public class ArticlePage extends BasePage {
         return this;
     }
 
+    @Step("Переходим в список сохранных папок через Snackbar")
     public ArticlePage goToMyListFromSnackBar() {
         click(goToMyListInSnackbar,
                 "Cannot find 'view list' in snackbar",
@@ -88,6 +95,7 @@ public class ArticlePage extends BasePage {
         return this;
     }
 
+    @Step("Возвращается обратно с экрана поиска")
     public ArticlePage navigateBack() {
         click(navigateUp, "Cannot click Navigate Back button");
         return this;

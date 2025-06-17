@@ -58,3 +58,22 @@ test {
     useJUnitPlatform()
     systemProperty 'allure.results.directory', "$buildDir/allure-results"
 }
+
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+    systemProperty "native.encoding", "UTF-8"
+    systemProperty "console.encoding", "UTF-8"
+}
+
+tasks.withType(Test) {
+    doFirst {
+        println "Current file.encoding: " + System.getProperty("file.encoding")
+        println "Current native.encoding: " + System.getProperty("native.encoding")
+    }
+}
+
+tasks.withType(Test) {
+    doFirst {
+        println ">>> JVM file.encoding: " + System.getProperty("file.encoding")
+    }
+}

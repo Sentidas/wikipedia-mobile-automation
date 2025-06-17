@@ -1,11 +1,13 @@
 package tests;
 
 import lib.core.CoreTestCase;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ArticleTest extends CoreTestCase {
 
     @Test
+    @DisplayName("Открытие статьи и проверка её заголовка")
     void compareArticleTitle() {
         pages.
                 search().initSearchInput()
@@ -22,6 +24,7 @@ public class ArticleTest extends CoreTestCase {
     }
 
     @Test
+    @DisplayName("Скролл статьи до футера после открытия")
     void swipeArticleTest() {
         pages.
                 search().initSearchInput()

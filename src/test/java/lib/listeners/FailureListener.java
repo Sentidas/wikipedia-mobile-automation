@@ -5,7 +5,7 @@ import io.qameta.allure.junit5.AllureJunit5;
 import org.junit.jupiter.api.extension.*;
 
 @ExtendWith(AllureJunit5.class)
-public class FailureListener implements TestWatcher {
+public class FailureListener implements TestExecutionExceptionHandler {
 
     private static AppiumDriver driver;
 
@@ -14,11 +14,12 @@ public class FailureListener implements TestWatcher {
     }
 
     @Override
-    public void testFailed(ExtensionContext context, Throwable cause) {
+    public void handleTestExecutionException(ExtensionContext context, Throwable throwable) throws Throwable {
         if (driver != null) {
             AllureAttachments attachments = new AllureAttachments(driver);
             attachments.takeScreenshot();
             attachments.savePageSource();
         }
+        throw throwable;
     }
 }

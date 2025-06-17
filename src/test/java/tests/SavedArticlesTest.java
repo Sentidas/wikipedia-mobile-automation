@@ -1,11 +1,13 @@
 package tests;
 
 import lib.core.CoreTestCase;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class SavedArticlesTest extends CoreTestCase {
 
     @Test
+    @DisplayName("Добавление статьи в избранное через Snackbar и проверка наличия в списке сохраненных статей")
     void saveArticleToMyListWithSnackBar() {
         pages.
                 search().initSearchInput()
@@ -27,6 +29,7 @@ public class SavedArticlesTest extends CoreTestCase {
     }
 
     @Test
+    @DisplayName("Сохранение и удаление скроллом одной статьи из списка сохраненных")
     void savedAndRemoveOneArticle() {
         pages.
                 search().initSearchInput()

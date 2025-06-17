@@ -5,6 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.selenide.AllureSelenide;
+import lib.listeners.AllureEnvironmentWriter;
 import lib.listeners.FailureListener;
 import lib.ui.factories.PageFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -23,6 +24,7 @@ public abstract class CoreTestCase {
     public void setUp() {
         try {
             initializeDriver();
+            AllureEnvironmentWriter.createEnvironmentFile();
             pages = new PageFactory(driver);
             pages.onboarding().skip();
         } catch (Exception e) {

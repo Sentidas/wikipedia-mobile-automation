@@ -3,11 +3,13 @@ package tests;
 import lib.core.CoreTestCase;
 import lib.utils.AppLifecycleUtils;
 import lib.utils.RotationUtils;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class OrientationAndBackgroundTests extends CoreTestCase {
 
     @Test
+    @DisplayName("Проверка отображения заголовка статьи при смене ориентации экрана")
     void changesScreenOrientationOnSearchResults() {
         pages.
                 search().initSearchInput()
@@ -29,6 +31,7 @@ public class OrientationAndBackgroundTests extends CoreTestCase {
     }
 
     @Test
+    @DisplayName("Проверка сохранения результатов поиска после сворачивания и возврата в приложение")
     void checkSearchArticleInBackground() {
         pages.
                 search().initSearchInput()

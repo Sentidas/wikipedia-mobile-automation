@@ -2,6 +2,7 @@ package lib.ui.pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.ui.factories.PageFactory;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -16,6 +17,7 @@ public class OnboardingPage extends BasePage {
         super(driver, factory);
     }
 
+    @Step("Пропускаем экран приветствия (Onboarding)")
     public OnboardingPage skip() {
         click(skipButton,"Cannot click Skip button on Onboarding screen");
         return this;
