@@ -69,7 +69,7 @@ allure serve build/allure-results
 
 ### Общая сводка:
 
-<a href="media/screen2.png">
+<a href="https://raw.githubusercontent.com/Sentidas/wikipedia-mobile-automation/main/media/screen2.png">
   <img src="media/screen2.png" width="700">
 </a>
 
