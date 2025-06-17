@@ -69,15 +69,21 @@ allure serve build/allure-results
 
 ### Общая сводка:
 
-<img src="media/screen2.png" width="700">
+<a href="media/screen2.png">
+  <img src="media/screen2.png" width="700">
+</a>
 
 ### Тесты:
 
-<img src="media/screen1.png" width="700">
+<a href="media/screen1.png">
+  <img src="media/screen1.png" width="700">
+</a>
 
 ### Пример упавшего теста:
 
-<img src="media/screen3.png" width="700">
+<a href="media/screen3.png">
+  <img src="media/screen3.png" width="700">
+</a>
 
 ---
 
