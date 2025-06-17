@@ -65,7 +65,19 @@ allure serve build/allure-results
 
 #### Примеры Allure-отчётов:
 
+## 📊 Примеры Allure-отчётов
 
+### Общая сводка:
+
+<img src="media/screen2.png" width="700">
+
+### Тесты:
+
+<img src="media/screen1.png" width="700">
+
+### Пример упавшего теста:
+
+<img src="media/screen3.png" width="700">
 
 ---
 
