@@ -75,14 +75,14 @@ allure serve build/allure-results
 
 ### Тесты:
 
-<a href="media/screen1.png">
-  <img src="media/screen1.png" width="700">
+<a href="https://raw.githubusercontent.com/Sentidas/wikipedia-mobile-automation/main/media/screen1.png">
+  <img src="media/screen2.png" width="700">
 </a>
 
 ### Пример упавшего теста:
 
-<a href="media/screen3.png">
-  <img src="media/screen3.png" width="700">
+<a href="https://raw.githubusercontent.com/Sentidas/wikipedia-mobile-automation/main/media/screen3.png">
+  <img src="media/screen2.png" width="700">
 </a>
 
 ---
